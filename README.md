@@ -4,7 +4,7 @@ A modern AI-powered Mental Health & Wellness web application designed to provide
 
 ## 🌐 Live Demo
 
-**[Visit MentalScope →](https://mental-scope.vercel.app/)**
+**[Visit MentalScope →](https://mental-scope.web.app/)**
 
 ## ✨ Features
 
