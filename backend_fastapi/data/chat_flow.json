@@ -1,0 +1,208 @@
+{
+    "start": {
+        "tag": "greeting",
+        "message": "Hi Tanya 💜 I'm Pandora. I'm here to support you in whatever way you need today. How are you feeling in this moment?",
+        "options": [
+            {
+                "label": "😔 Feeling Sad",
+                "next": "sadness"
+            },
+            {
+                "label": "😰 Anxiety / Panic",
+                "next": "anxiety"
+            },
+            {
+                "label": "😵 Stress / Overwhelmed",
+                "next": "stress"
+            },
+            {
+                "label": "🌙 Sleep Issues",
+                "next": "sleep"
+            },
+            {
+                "label": "👥 Loneliness / Friends",
+                "next": "lonely"
+            },
+            {
+                "label": "🧘 Meditation",
+                "next": "breathing"
+            },
+            {
+                "label": "📌 Mental Health Fact",
+                "next": "fact"
+            }
+        ]
+    },
+    "stress": {
+        "tag": "stressed",
+        "message": "I understand. Stress can feel very heavy. What's adding most to your plate right now?",
+        "options": [
+            {
+                "label": "Exams & Studies 📚",
+                "next": "stress_exam"
+            },
+            {
+                "label": "Project/Work Pressure 💻",
+                "next": "stress_work"
+            },
+            {
+                "label": "Family & Expectations 🏠",
+                "next": "stress_family"
+            },
+            {
+                "label": "Something else",
+                "next": "stress_general"
+            }
+        ]
+    },
+    "stress_exam": {
+        "tag": "problem",
+        "message": "Exams can be overwhelming, but you've managed tough things before. What would help you clear your head?",
+        "options": [
+            {
+                "label": "A quick breathing break 🧘",
+                "next": "breathing"
+            },
+            {
+                "label": "Creating a small plan ✍️",
+                "next": "study_plan"
+            },
+            {
+                "label": "Just venting about it 🗣️",
+                "next": "vent_exam"
+            }
+        ]
+    },
+    "anxiety": {
+        "tag": "anxious",
+        "message": "I'm right here with you. When anxiety hits, it's often because our mind is living in a scary 'future'. Can we try to come back to the present together?",
+        "options": [
+            {
+                "label": "Yes, guide me 🌊",
+                "next": "grounding"
+            },
+            {
+                "label": "I just want to talk",
+                "next": "talk_anxiety"
+            },
+            {
+                "label": "I need a distraction",
+                "next": "distraction"
+            }
+        ]
+    },
+    "sadness": {
+        "tag": "sad",
+        "message": "It's okay to feel sad. I'm here for you. Do you want to talk about what's making you feel this way?",
+        "options": [
+            {
+                "label": "Relationship issues 💔",
+                "next": "relationship"
+            },
+            {
+                "label": "Loss/Grief 🕯️",
+                "next": "death"
+            },
+            {
+                "label": "Just feeling low",
+                "next": "low_mood"
+            }
+        ]
+    },
+    "lonely": {
+        "tag": "lonely",
+        "message": "Loneliness is a quiet, heavy feeling. But remember, being 'alone' isn't the same as being 'unworthy'. Is this feeling coming from a specific event, or just a general sense?",
+        "options": [
+            {
+                "label": "Recent Breakup 💔",
+                "next": "breakup"
+            },
+            {
+                "label": "Friendship issues 👥",
+                "next": "friends"
+            },
+            {
+                "label": "Just feeling invisible",
+                "next": "invisible"
+            }
+        ]
+    },
+    "sleep": {
+        "tag": "sleep",
+        "message": "Sleep is so important for your mental well-being. What's making it hard to rest tonight?",
+        "options": [
+            {
+                "label": "Mind is racing 🧠",
+                "next": "anxiety"
+            },
+            {
+                "label": "I just can't sleep",
+                "next": "sleep_tips"
+            },
+            {
+                "label": "I need a relaxation exercise",
+                "next": "breathing"
+            }
+        ]
+    },
+    "fact": {
+        "tag": "fact",
+        "message": "Here is a small piece of wisdom for you...",
+        "options": [
+            {
+                "label": "Tell me another 💡",
+                "next": "fact"
+            },
+            {
+                "label": "That helped, thanks!",
+                "next": "thanks"
+            },
+            {
+                "label": "I'd like to talk about my mood",
+                "next": "start"
+            }
+        ]
+    },
+    "breathing": {
+        "tag": "meditation",
+        "message": "Okay, let's breathe. Inhale slowly for 4 seconds... Hold for 2... Exhale for 6. Let's do this 3 times 🌬️. How are you feeling now?",
+        "options": [
+            {
+                "label": "A bit calmer 🍃",
+                "next": "calm_next"
+            },
+            {
+                "label": "Still heavy",
+                "next": "anxiety"
+            }
+        ]
+    },
+    "grounding": {
+        "tag": "meditation",
+        "message": "Let's try the 5-4-3-2-1 technique. Look around and name **5 things you can see** right now. Then tell me when you're ready for the next step.",
+        "options": [
+            {
+                "label": "Done! Next? ✅",
+                "next": "grounding_2"
+            },
+            {
+                "label": "I'd rather try breathing",
+                "next": "breathing"
+            }
+        ]
+    },
+    "thanks": {
+        "tag": "thanks",
+        "message": "You're very welcome. I'm glad I could help! Is there anything else you'd like to share?",
+        "options": [
+            {
+                "label": "I'm good for now",
+                "next": "done"
+            },
+            {
+                "label": "Talk about something else",
+                "next": "start"
+            }
+        ]
+    }
+}

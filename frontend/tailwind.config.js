@@ -7,9 +7,20 @@ export default {
     theme: {
         extend: {
             colors: {
-                'calm-blue': '#E0F2FE',
-                'lavender': '#F3E8FF',
-                'soft-green': '#D1FAE5',
+                // Calming Mental Wellness Palette
+                'calm-blue': '#6CB4EE',
+                'lavender': '#A291E4',
+                'soft-teal': '#82C4C3',
+                'gentle-pink': '#F8D7E0',
+                'light-bg': '#F9FAFB',
+                'soft-green': '#A8E6CF',
+            },
+            boxShadow: {
+                '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.1)',
+            },
+            fontFamily: {
+                'heading': ['Poppins', 'sans-serif'],
+                'body': ['Inter', 'sans-serif'],
             },
         },
     },

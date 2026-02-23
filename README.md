@@ -31,7 +31,7 @@ A modern AI-powered Mental Health & Wellness web application designed to provide
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
 - **Routing**: React Router DOM
-- **Deployment**: Vercel
+- **Deployment**: Firebase Hosting (Frontend)
 
 ## 🚀 Getting Started
 

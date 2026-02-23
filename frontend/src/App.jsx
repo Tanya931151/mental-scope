@@ -1,4 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -8,21 +10,36 @@ import MoodTracker from './pages/MoodTracker';
 import Journal from './pages/Journal';
 import Emergency from './pages/Emergency';
 import Dashboard from './pages/Dashboard';
+import Analytics from './pages/Analytics';
+import DoctorMap from './pages/DoctorMap';
+import Facts from './pages/Facts';
+import Meditation from './pages/Meditation';
 
-export default function App() {
+function App() {
   return (
-    <div className="min-h-screen">
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/chat" element={<AIChat />} />
-        <Route path="/mood" element={<MoodTracker />} />
-        <Route path="/journal" element={<Journal />} />
-        <Route path="/emergency" element={<Emergency />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </div>
+    <AuthProvider>
+      <div className="min-h-screen">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><AIChat /></ProtectedRoute>} />
+          <Route path="/mood" element={<ProtectedRoute><MoodTracker /></ProtectedRoute>} />
+          <Route path="/journal" element={<ProtectedRoute><Journal /></ProtectedRoute>} />
+          <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+          <Route path="/doctor-map" element={<ProtectedRoute><DoctorMap /></ProtectedRoute>} />
+          <Route path="/facts" element={<Facts />} />
+          <Route path="/meditation" element={<Meditation />} />
+
+          <Route path="/emergency" element={<Emergency />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
+
+export default App;

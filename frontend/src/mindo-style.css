@@ -1,0 +1,109 @@
+@import "tailwindcss";
+@reference "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;700;900&family=Inter:wght@100;400;700;900&display=swap');
+
+@theme {
+  --shadow-3xl: 0 35px 60px -15px rgba(0, 0, 0, 0.1);
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  --primary: #8B5CF6;
+  --primary-light: #DDD6FE;
+  --secondary: #10B981;
+  --accent: #F59E0B;
+  --bg-main: #F8F9FE;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-main);
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+  color: #1F1F1F;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+
+  /* Premium Surface */
+  .premium-surface {
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  }
+
+  /* Premium Card (Universal) */
+  .premium-card {
+    background: var(--glass);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+    @apply rounded-[40px] p-8 transition-all duration-300;
+  }
+
+  .premium-card:hover {
+    @apply -translate-y-1 shadow-2xl bg-white border-purple-100;
+    box-shadow: 0 20px 40px -20px rgba(139, 92, 246, 0.15);
+  }
+
+  /* Dashboard Grid */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+  }
+
+  /* Core Buttons */
+  .btn-mindo {
+    @apply px-6 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all active:scale-95 inline-flex items-center justify-center;
+  }
+
+  .btn-mindo-primary {
+    @apply bg-purple-600 text-white shadow-xl shadow-purple-200 hover:bg-purple-700 hover:shadow-purple-300 px-6 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all active:scale-95 inline-flex items-center justify-center;
+  }
+
+  .btn-mindo-secondary {
+    @apply bg-white border border-gray-100 text-gray-900 shadow-sm hover:border-purple-200 hover:bg-purple-50 px-6 py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all active:scale-95 inline-flex items-center justify-center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 10px;
+  border: 3px solid var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}
+
+/* Chart Container Fixes */
+.recharts-responsive-container {
+  min-height: 200px;
+}

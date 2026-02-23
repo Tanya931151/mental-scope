@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import DailyEntryForm from "../components/DailyEntryForm";
+import { API_URL } from '../api/emotionApi';
 
 export default function DailyEntryForm({ onAdd }) {
   const [form, setForm] = useState({
@@ -18,7 +18,7 @@ export default function DailyEntryForm({ onAdd }) {
   const submitEntry = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:5000/api/mental", {
+    await axios.post(`${API_URL}/api/mental`, {
       userId: "tanya123",
       ...form,
     });

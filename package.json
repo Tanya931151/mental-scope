@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "install": "cd frontend && npm install"
+  },
   "dependencies": {
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
