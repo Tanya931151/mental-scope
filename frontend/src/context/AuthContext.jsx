@@ -32,24 +32,30 @@ export function AuthProvider({ children }) {
   }
 
   async function googleSignIn() {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
 
-    // Create user profile in Firestore if it doesn't exist
-    if (result.user) {
-      const userRef = doc(db, 'users', result.user.uid);
-      const docSnap = await getDoc(userRef);
+      // Create user profile in Firestore if it doesn't exist
+      if (result.user) {
+        const userRef = doc(db, 'users', result.user.uid);
+        const docSnap = await getDoc(userRef);
 
-      if (!docSnap.exists()) {
-        await setDoc(userRef, {
-          name: result.user.displayName,
-          email: result.user.email,
-          createdAt: new Date().toISOString()
-        });
+        if (!docSnap.exists()) {
+          await setDoc(userRef, {
+            name: result.user.displayName,
+            email: result.user.email,
+            createdAt: new Date().toISOString()
+          });
+        }
       }
+      return result;
+    } catch (error) {
+      console.error("Google Sign-In Error:", error.code, error.message);
+      throw error;
     }
-    return result;
   }
+
 
 
   function logout() {
