@@ -25,7 +25,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "https://mental-scope.web.app",
-        "https://mental-scope.firebaseapp.com"
+        "https://mental-scope.firebaseapp.com",
+        "https://mentalscope.netlify.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
