@@ -17,18 +17,28 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   async function signup(email, password, name) {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    // Create user profile in Firestore
-    await setDoc(doc(db, 'users', result.user.uid), {
-      name,
-      email,
-      createdAt: new Date().toISOString()
-    });
-    return result;
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      // Create user profile in Firestore
+      await setDoc(doc(db, 'users', result.user.uid), {
+        name,
+        email,
+        createdAt: new Date().toISOString()
+      });
+      return result;
+    } catch (error) {
+      console.error("Signup Error:", error.code, error.message);
+      throw error;
+    }
   }
 
-  function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+  async function login(email, password) {
+    try {
+      return await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error("Login Error:", error.code, error.message);
+      throw error;
+    }
   }
 
   async function googleSignIn() {
