@@ -12,16 +12,26 @@ app = FastAPI(title="MentalScope AI API")
 # Helper to handle potential /api prefix
 @app.middleware("http")
 async def add_api_prefix(request, call_next):
-    # This ensures both "/api/chat" and "/api/chat/" etc work
-    if request.url.path.startswith("/api"):
-        # Strip /api prefix
-        new_path = request.url.path[4:] if request.url.path.startswith("/api") else request.url.path
+    path = request.url.path
+    
+    # Clean up double slashes if they exist (e.g., //api/chat -> /api/chat)
+    if path.startswith("//"):
+        path = "/" + path.lstrip("/")
+        request.scope['path'] = path
+
+    # Strip /api prefix
+    if path.startswith("/api"):
+        new_path = path[4:] if path.startswith("/api") else path
         if not new_path: new_path = "/"
         request.scope['path'] = new_path
-        print(f"DEBUG: Rewriting {request.url.path} to {new_path}")
+        print(f"DEBUG: Rewriting {path} to {new_path}")
     
     response = await call_next(request)
     return response
+
+@app.get("/")
+async def root():
+    return {"message": "MentalScope AI API is Running", "docs": "/docs", "health": "/health"}
 
 
 # Enable CORS for React frontend

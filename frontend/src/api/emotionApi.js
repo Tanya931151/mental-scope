@@ -1,4 +1,9 @@
-export const API_URL = import.meta.env.VITE_API_URL;
+let base_url = import.meta.env.VITE_API_URL || "";
+// Remove trailing slash if present to prevent double slashes in requests
+if (base_url.endsWith("/")) {
+    base_url = base_url.slice(0, -1);
+}
+export const API_URL = base_url;
 
 if (!API_URL) {
     console.error("VITE_API_URL is NOT defined! The AI Chatbot will not work in production.");
