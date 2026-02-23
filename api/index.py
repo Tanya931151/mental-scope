@@ -9,12 +9,17 @@ from chatbot_engine import respond, ChatState, asdict
 
 app = FastAPI(title="MentalScope AI API")
 
-# Helper to handle potential /api prefix from Vercel/Firebase
+# Helper to handle potential /api prefix
 @app.middleware("http")
 async def add_api_prefix(request, call_next):
-    if request.url.path.startswith("/api/"):
-        # Strip /api prefix if present for internal routing consistency
-        request.scope['path'] = request.url.path.replace("/api", "", 1)
+    # This ensures both "/api/chat" and "/api/chat/" etc work
+    if request.url.path.startswith("/api"):
+        # Strip /api prefix
+        new_path = request.url.path[4:] if request.url.path.startswith("/api") else request.url.path
+        if not new_path: new_path = "/"
+        request.scope['path'] = new_path
+        print(f"DEBUG: Rewriting {request.url.path} to {new_path}")
+    
     response = await call_next(request)
     return response
 
