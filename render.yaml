@@ -1,0 +1,37 @@
+services:
+  # The Python Model Backend (AI logic)
+  - type: web
+    name: mentalscope-ai
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.x
+
+  # The Node.js Database Backend (Firebase/User Auth)
+  - type: web
+    name: mentalscope-node
+    env: node
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: MONGO_URI
+        sync: false # Set this in Render dashboard manually
+
+  # The React Frontend (UI)
+  - type: web
+    name: mentalscope-app
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://mentalscope-node.onrender.com
+      - key: VITE_ML_API_URL
+        value: https://mentalscope-ai.onrender.com
+    # Redirect all routing back to index.html for React Router
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
