@@ -20,6 +20,10 @@ HABIT_MODEL_PATH = os.path.join(BASE_DIR, "mood_score_model.pkl")
 app = FastAPI(title="MentalScope AI API")
 api_router = APIRouter(prefix="/api")
 
+@app.get("/")
+async def root():
+    return {"message": "MentalScope AI API is Running", "docs": "/docs", "health": "/api/health"}
+
 # ... (Global models and load_models remain the same)
 
 # Global models
