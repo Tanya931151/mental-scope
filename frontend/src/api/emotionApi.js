@@ -1,4 +1,4 @@
-let base_url = import.meta.env.VITE_API_URL || "";
+let base_url = import.meta.env.VITE_ML_API_URL || "http://localhost:8000";
 // Remove trailing slash if present to prevent double slashes in requests
 if (base_url.endsWith("/")) {
     base_url = base_url.slice(0, -1);
@@ -33,6 +33,61 @@ export async function predictEmotion(text) {
     } catch (error) {
         console.error("Emotion Prediction failed:", error);
         return { emotion: "Neutral" };
+    }
+}
+
+export async function predictHabits(habits) {
+    try {
+        const res = await fetch(`${API_URL}/api/habit-prediction`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                sleep_hours: parseFloat(habits.sleep_hours) || 0,
+                workout_min: parseFloat(habits.workout_minutes) || 0,
+                journaling: habits.journaling || false,
+                reading_min: parseFloat(habits.reading_minutes) || 0,
+                screen_time: parseFloat(habits.screen_time_minutes) / 60 || 0 // convert min to hours for model
+            })
+        });
+
+        if (!res.ok) throw new Error(`API Error: ${res.status}`);
+        return await res.json();
+    } catch (error) {
+        console.error("Habit Prediction failed:", error);
+        return null;
+    }
+}
+
+export async function getShapValues(habits) {
+    try {
+        const res = await fetch(`${API_URL}/api/shap`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                sleep_hours: parseFloat(habits.sleep_hours) || 0,
+                workout_min: parseFloat(habits.workout_minutes) || 0,
+                journaling: habits.journaling || false,
+                reading_min: parseFloat(habits.reading_minutes) || 0,
+                screen_time: parseFloat(habits.screen_time_minutes) / 60 || 0
+            })
+        });
+
+        if (!res.ok) throw new Error(`API Error: ${res.status}`);
+        return await res.json();
+    } catch (error) {
+        console.error("SHAP values failed:", error);
+        return { features: [] };
+    }
+}
+
+export async function getDatasetSamples() {
+    try {
+        const res = await fetch(`${API_URL}/api/datasets/samples`);
+        if (!res.ok) throw new Error(`API Error: ${res.status}`);
+        return await res.json();
+    } catch (error) {
+        console.error("Failed to fetch dataset samples:", error);
+        return { train: [], val: [], test: [] };
     }
 }
 

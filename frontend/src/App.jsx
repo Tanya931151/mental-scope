@@ -11,6 +11,8 @@ import Journal from './pages/Journal';
 import Emergency from './pages/Emergency';
 import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
+import LifestyleTracker from './pages/LifestyleTracker';
+import MentalScore from './pages/MentalScore';
 import DoctorMap from './pages/DoctorMap';
 import Facts from './pages/Facts';
 import Meditation from './pages/Meditation';
@@ -29,7 +31,9 @@ function App() {
           <Route path="/chat" element={<ProtectedRoute><AIChat /></ProtectedRoute>} />
           <Route path="/mood" element={<ProtectedRoute><MoodTracker /></ProtectedRoute>} />
           <Route path="/journal" element={<ProtectedRoute><Journal /></ProtectedRoute>} />
+          <Route path="/lifestyle" element={<ProtectedRoute><LifestyleTracker /></ProtectedRoute>} />
           <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+          <Route path="/mental-score" element={<ProtectedRoute><MentalScore /></ProtectedRoute>} />
           <Route path="/doctor-map" element={<ProtectedRoute><DoctorMap /></ProtectedRoute>} />
           <Route path="/facts" element={<Facts />} />
           <Route path="/meditation" element={<Meditation />} />

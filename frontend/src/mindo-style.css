@@ -103,7 +103,32 @@ body {
   background: #D1D5DB;
 }
 
+/* Stress Heatmap Intensity Colors (Red/Orange Theme) */
+.stress-intensity-0 {
+  fill: #f1f5f9;
+}
+
+.stress-intensity-1 {
+  fill: #fee2e2;
+}
+
+.stress-intensity-2 {
+  fill: #fca5a5;
+}
+
+.stress-intensity-3 {
+  fill: #ef4444;
+}
+
+.stress-intensity-4 {
+  fill: #991b1b;
+}
+
+.color-empty {
+  fill: #f8fafc;
+}
+
 /* Chart Container Fixes */
 .recharts-responsive-container {
-  min-height: 200px;
+  min-height: 250px;
 }

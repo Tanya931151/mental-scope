@@ -1,0 +1,14 @@
+{
+    "message": "Exams & Studies \ud83d\udcda",
+    "state": {
+        "topic": null,
+        "expecting": "start",
+        "emotion": null,
+        "last_user": null,
+        "last_bot": null,
+        "talk_topic": null,
+        "talk_stage": 0,
+        "talk_last_question": null,
+        "last_coping_tip": null
+    }
+}

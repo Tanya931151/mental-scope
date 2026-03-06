@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, MessageCircle, Heart, BookOpen, AlertCircle, LogIn, UserPlus, BarChart2, LayoutDashboard, Sparkles, LogOut, MapPin, Wind, Menu, X, Brain } from 'lucide-react';
+import { Home, MessageCircle, Heart, BookOpen, AlertCircle, LogIn, UserPlus, BarChart2, LayoutDashboard, Sparkles, LogOut, MapPin, Wind, Menu, X, Brain, Bot, Activity } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
@@ -19,9 +19,9 @@ export default function Navigation() {
         { path: '/chat', icon: MessageCircle, label: 'AI Support' },
         { path: '/mood', icon: Heart, label: 'Moods' },
         { path: '/journal', icon: BookOpen, label: 'Insights' },
+        { path: '/lifestyle', icon: Bot, label: 'Prediction' },
         { path: '/analytics', icon: BarChart2, label: 'Analytics' },
-        { path: '/doctor-map', icon: MapPin, label: 'Doctors' },
-        { path: '/facts', icon: Brain, label: 'Facts' },
+        { path: '/mental-score', icon: Activity, label: 'Index' },
         { path: '/meditation', icon: Wind, label: 'Breathe' },
     ];
 

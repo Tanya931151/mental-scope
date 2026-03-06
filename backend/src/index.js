@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import mentalRoutes from "./routes/mentalRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import predictRoutes from "./routes/predictRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ mongoose
   .catch(console.error);
 
 app.use("/api/mental", mentalRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/predict", predictRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

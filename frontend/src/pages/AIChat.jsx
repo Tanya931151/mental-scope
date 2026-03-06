@@ -136,7 +136,7 @@ export default function AIChat() {
 
             // 2. Call AI Backend
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 15000);
+            const timeoutId = setTimeout(() => controller.abort(), 45000); // Increased to 45s for slow AI responses
 
             const response = await fetch(`${API_URL}/api/chat`, {
                 method: 'POST',
@@ -190,6 +190,7 @@ export default function AIChat() {
             console.error("AI Response failed:", error);
             setIsTyping(false);
             const fallbackMsg = {
+                id: 'fallback-' + Date.now(),
                 type: 'ai',
                 text: "I'm having a little trouble connecting, but I'm still here for you. 💙",
                 timestamp: new Date().toISOString(),
@@ -244,9 +245,9 @@ export default function AIChat() {
 
                 {/* 🧘 Mood Quick Selectors */}
                 <div className="flex flex-wrap gap-3 justify-center mb-8 mt-4">
-                    {moodPrompts.map((m, i) => (
+                    {moodPrompts.map((m) => (
                         <motion.button
-                            key={i}
+                            key={m.label}
                             whileHover={{ y: -4, scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => handleSend(m.text)}
@@ -323,9 +324,9 @@ export default function AIChat() {
                     {/* 🧠 Interactive Options Chips */}
                     {currentOptions.length > 0 && (
                         <div className="px-8 pb-4 flex flex-wrap gap-2 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                            {currentOptions.map((opt, idx) => (
+                            {currentOptions.map((opt) => (
                                 <motion.button
-                                    key={idx}
+                                    key={opt.label}
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => handleSend(opt.label)}
